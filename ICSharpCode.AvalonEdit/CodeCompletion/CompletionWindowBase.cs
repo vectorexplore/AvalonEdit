@@ -341,7 +341,38 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 			// Let's use device dependent units for everything
 			Size completionWindowSize = new Size(this.ActualWidth, this.ActualHeight).TransformToDevice(textView);
 			Rect bounds = new Rect(location, completionWindowSize);
-			Rect workingScreen = System.Windows.Forms.Screen.GetWorkingArea(location.ToSystemDrawing()).ToWpf();
+
+			// Rect workingScreen = System.Windows.Forms.Screen.GetWorkingArea(location.ToSystemDrawing()).ToWpf();
+
+			// --- Replaced System.Windows.Forms.Screen ---
+			// POINT pt = new POINT { x = (int)location.X, y = (int)location.Y };
+			// IntPtr hMonitor = MonitorFromPoint(pt, MONITOR_DEFAULTTONEAREST);
+
+			// Rect workingScreen;
+			// if (hMonitor != IntPtr.Zero)
+			// {
+			// 	MONITORINFO monitorInfo = new MONITORINFO();
+			// 	monitorInfo.cbSize = Marshal.SizeOf(typeof(MONITORINFO));
+			// 	GetMonitorInfo(hMonitor, ref monitorInfo);
+				
+			// 	workingScreen = new Rect(
+			// 		monitorInfo.rcWork.left,
+			// 		monitorInfo.rcWork.top,
+			// 		monitorInfo.rcWork.right - monitorInfo.rcWork.left,
+			// 		monitorInfo.rcWork.bottom - monitorInfo.rcWork.top);
+			// }
+			// else
+			// {
+			// 	// Fallback if monitor detection fails
+			// 	workingScreen = SystemParameters.WorkArea;
+			// }
+			// ---------------------------------------------
+
+			// --- Pure WPF API ---
+			// WARNING: This only returns the working area of the PRIMARY monitor.
+			Rect workingScreen = SystemParameters.WorkArea;
+			// --------------------
+
 			if (!workingScreen.Contains(bounds)) {
 				if (bounds.Left < workingScreen.Left) {
 					bounds.X = workingScreen.Left;

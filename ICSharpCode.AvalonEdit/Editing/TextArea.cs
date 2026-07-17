@@ -1051,7 +1051,11 @@ namespace ICSharpCode.AvalonEdit.Editing
 		void ShowMouseCursor()
 		{
 			if (this.isMouseCursorHidden) {
-				System.Windows.Forms.Cursor.Show();
+				// System.Windows.Forms.Cursor.Show();
+
+				// VePF_Note: Setting to null restores the standard cursor behavior for the element
+                System.Windows.Input.Mouse.OverrideCursor = null;
+
 				this.isMouseCursorHidden = false;
 			}
 		}
@@ -1060,7 +1064,11 @@ namespace ICSharpCode.AvalonEdit.Editing
 		{
 			if (Options.HideCursorWhileTyping && !this.isMouseCursorHidden && this.IsMouseOver) {
 				this.isMouseCursorHidden = true;
-				System.Windows.Forms.Cursor.Hide();
+
+				// System.Windows.Forms.Cursor.Hide();
+
+				//  VePF_Note: Forces the cursor to be hidden while over the WPF application
+                System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.None;
 			}
 		}
 
