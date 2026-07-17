@@ -106,6 +106,7 @@ namespace ICSharpCode.AvalonEdit.Sample
 		
 		void propertyGridComboBoxSelectionChanged(object sender, RoutedEventArgs e)
 		{
+			/*
 			if (propertyGrid == null)
 				return;
 			switch (propertyGridComboBox.SelectedIndex) {
@@ -118,7 +119,7 @@ namespace ICSharpCode.AvalonEdit.Sample
 				case 2:
 					propertyGrid.SelectedObject = textEditor.Options;
 					break;
-			}
+			}*/
 		}
 		
 		CompletionWindow completionWindow;

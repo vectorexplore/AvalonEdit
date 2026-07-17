@@ -96,9 +96,9 @@
 					<ComboBoxItem>TextArea</ComboBoxItem>
 					<ComboBoxItem>Options</ComboBoxItem>
 				</ComboBox>
-				<WindowsFormsHost DockPanel.Dock="Right" Name="propertyGridHost">
+				<!-- <WindowsFormsHost DockPanel.Dock="Right" Name="propertyGridHost">
 					<forms:PropertyGrid x:Name="propertyGrid"/>
-				</WindowsFormsHost>
+				</WindowsFormsHost> -->
 			</DockPanel>
 		</Grid>
 	</DockPanel>
